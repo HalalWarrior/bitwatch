@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BITWATCH V2 - Future Wearable Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #48dbfb;
+            --dark: #2d3436;
+            --light: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Animated Header */
+        header {
+            padding: 1.5rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .logo-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .logo {
+            height: 50px;
+            filter: drop-shadow(0 4px 6px rgba(108,92,231,0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: rotate(-15deg) scale(1.1);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero Section with Floating Animation */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            animation: fadeUp 0.8s ease-out;
+        }
+
+        .hero h2 .highlight {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h2 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            animation: underlineExpand 0.8s ease-out;
+        }
+
+        .microbit-image {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            transform: rotate(-5deg);
+            filter: drop-shadow(0 20px 30px rgba(108,92,231,0.3));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Modern Feature Grid */
+        .features {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            padding: 2.5rem;
+            border-radius: 20px;
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            box-shadow: 20px 20px 60px #d9d9d9,
+                        -20px -20px 60px #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(108,92,231,0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 6px rgba(108,92,231,0.2);
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .feature p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Team Section */
+        .made-by {
+            padding: 4rem 5%;
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+        }
+
+        .made-by-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            font-weight: 600;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(108,92,231,0.2);
+            transition: transform 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .made-by-button:hover {
+            transform: scale(1.05);
+            animation: none;
+        }
+
+        .creators {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .creators p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            padding: 0.8rem 1.5rem;
+            background: rgba(255,255,255,0.9);
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .creators p:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-20px) rotate(-8deg); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes underlineExpand {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .microbit-image {
+                max-width: 90%;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-title">
+            <img src="logo.png" alt="BITWATCH V2" class="logo">
+            <h1>BITWATCH V2</h1>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>The <span class="highlight">Future</span> of Tech<br>on Your <span class="highlight">Wrist</span></h2>
+            <img src="microbit.png" alt="BITWATCH V2" class="microbit-image">
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature">
+                <i class="fas fa-cloud-sun feature-icon"></i>
+                <h3>Smart Weather Detection</h3>
+                <p>Real-time environmental monitoring with predictive weather alerts</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-heartbeat feature-icon"></i>
+                <h3>Health Tracker</h3>
+                <p>24/7 heart rate monitoring and activity tracking with AI insights</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-bolt feature-icon"></i>
+                <h3>Instant Connectivity</h3>
+                <p>Seamless Bluetooth 5.0 pairing with all your devices</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="made-by">
+        <div class="made-by-button">Innovation Team</div>
+        <div class="creators">
+            <p>Alexandra Techson</p>
+            <p>Jordan Innovate</p>
+            <p>Sam Codecraft</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+        <p>&copy; 2023 BITWATCH V2. Redefining Wearable Technology</p>
+    </footer>
+</body>
+</html>
